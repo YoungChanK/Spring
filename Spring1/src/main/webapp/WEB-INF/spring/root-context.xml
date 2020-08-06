@@ -4,5 +4,15 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name ="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name ="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/example?serverTimezone=Asia/Seoul"></property>
+		<property name ="username" value ="chan"></property>
+		<property name ="password" value = "1234"></property>
+	</bean>
+	<!-- 끊고 연결해주기 -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref ="hikariConfig"> </constructor-arg>
+	</bean>
+	
 </beans>
