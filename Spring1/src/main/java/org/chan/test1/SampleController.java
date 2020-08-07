@@ -1,5 +1,6 @@
 package org.chan.test1;
 
+import org.chan.domain.SampleDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,12 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SampleController {
 	private static final Logger logger=LoggerFactory.getLogger(SampleController.class);
 	
-	@RequestMapping(value="doW", method = RequestMethod.POST)
-	public void doW(@RequestParam("id") String id, @RequestParam("password")String password, @RequestParam("name")String name,@RequestParam("phone") int phone) {
+	@RequestMapping(value="doW", method = RequestMethod.GET)
+	public void doW(@RequestParam("id") String id, @RequestParam("password") String password, @RequestParam("name") String name,@RequestParam("phone") int phone) {
 		logger.info("@RequestMapping doW가 호출되었습니다 ");
 	}
-	@RequestMapping(value="doM" , method = RequestMethod.POST)
-	public void doM() {
+	//데이터 용량이 큰경우 밑의 방식으로 받는게 좋음
+	@RequestMapping(value="doM" , method = RequestMethod.GET)
+	public void doM(SampleDTO sdto) {
 		logger.info("@RequestMapping doM가 호출되었습니다 ");
 	}
 	@RequestMapping(value="doD" , method = RequestMethod.POST)
