@@ -1,6 +1,7 @@
 package org.chan.test1;
 
 import org.chan.domain.SampleDTO;
+import org.chan.domain.SampleDTOList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -26,8 +27,9 @@ public class SampleController {
 	public void doM(SampleDTO sdto) {
 		logger.info("@RequestMapping doM가 호출되었습니다 ");
 	}
-	@RequestMapping(value="doD" , method = RequestMethod.POST)
-	public void doD() {
+	@RequestMapping(value="doD" , method = RequestMethod.GET)
+	public void doD(SampleDTOList list) {
+		logger.info("SampleDTOList="+list);
 		logger.info("@RequestMapping doD가 호출되었습니다 ");
 	}
 	@RequestMapping(value="doR", method = RequestMethod.GET)
