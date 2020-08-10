@@ -5,13 +5,15 @@ import org.chan.domain.SampleDTOList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-//ÀÚ¹ÙÆÄÀÏÀ» controller·Î ÀÎ½Ä½ÃÄÑÁÖ±â À§ÇØ @Controller¸¦ »ç¿ë
+//ìë°”íŒŒì¼ì„ controllerë¡œ ì¸ì‹ì‹œì¼œì£¼ê¸° ìœ„í•´ @Controllerë¥¼ ì‚¬ìš©
 @Controller
-//±×Àü±îÁø view¿¡ ÀÖ´Â ÆÄÀÏÀ» ¸ŞÇÎÇß´ÙÇÏ¸é view¾È¿¡ ´Ù¸¥ ÆÄÀÏÀÌ ÀÖÀ»½Ã À§¿¡¼­ value°ªÀ» ¹Ì¸® ¼±¾ğÇØÁØ´Ù   (¿©±â¼± GET¹æ½Ä¸¸ °¡´É)
+//ê·¸ì „ê¹Œì§„ viewì— ìˆëŠ” íŒŒì¼ì„ ë©”í•‘í–ˆë‹¤í•˜ë©´ viewì•ˆì— ë‹¤ë¥¸ íŒŒì¼ì´ ìˆì„ì‹œ ìœ„ì—ì„œ valueê°’ì„ ë¯¸ë¦¬ ì„ ì–¸í•´ì¤€ë‹¤   (ì—¬ê¸°ì„  GETë°©ì‹ë§Œ ê°€ëŠ¥)
 // view/doA   ==>>  view/board/doA
 @RequestMapping(value="board")
 
@@ -20,25 +22,37 @@ public class SampleController {
 	
 	@RequestMapping(value="doW", method = RequestMethod.GET)
 	public void doW(@RequestParam("id") String id, @RequestParam("password") String password, @RequestParam("name") String name,@RequestParam("phone") int phone) {
-		logger.info("@RequestMapping doW°¡ È£ÃâµÇ¾ú½À´Ï´Ù ");
+		logger.info("@RequestMapping doWê°€ í˜¸ì¶œë˜ì—ˆìŠµë‹ˆë‹¤ ");
 	}
-	//µ¥ÀÌÅÍ ¿ë·®ÀÌ Å«°æ¿ì ¹ØÀÇ ¹æ½ÄÀ¸·Î ¹Ş´Â°Ô ÁÁÀ½
+	//ë°ì´í„° ìš©ëŸ‰ì´ í°ê²½ìš° ë°‘ì˜ ë°©ì‹ìœ¼ë¡œ ë°›ëŠ”ê²Œ ì¢‹ìŒ
 	@RequestMapping(value="doM" , method = RequestMethod.GET)
 	public void doM(SampleDTO sdto) {
-		logger.info("@RequestMapping doM°¡ È£ÃâµÇ¾ú½À´Ï´Ù ");
+		logger.info("@RequestMapping doMê°€ í˜¸ì¶œë˜ì—ˆìŠµë‹ˆë‹¤ ");
 	}
 	@RequestMapping(value="doD" , method = RequestMethod.GET)
-	public void doD(SampleDTOList list) {
+	public String doD(SampleDTOList list, Model model) {
 		logger.info("SampleDTOList="+list);
-		logger.info("@RequestMapping doD°¡ È£ÃâµÇ¾ú½À´Ï´Ù ");
+		logger.info("@RequestMapping doDê°€ í˜¸ì¶œë˜ì—ˆìŠµë‹ˆë‹¤ ");
+		
+		model.addAttribute("abc","doDì— ì „ë‹¬í•˜ê³ íŒŒ í•˜ëŠ” ë°ì´í„°");
+		return "bbb";
 	}
+	
 	@RequestMapping(value="doR", method = RequestMethod.GET)
 	public void doR() {
-		logger.info("@RequestMapping doR°¡ È£ÃâµÇ¾ú½À´Ï´Ù ");
+		logger.info("@RequestMapping doRê°€ í˜¸ì¶œë˜ì—ˆìŠµë‹ˆë‹¤ ");
+	}
+	//redirect ì²˜ë¦¬
+	@RequestMapping(value="doE", method = RequestMethod.GET)
+	public String doE(RedirectAttributes rttr) {
+		logger.info("doE ì‹¤í–‰ë¨");
+		rttr.addFlashAttribute("msg","ë¦¬ë‹¤ì´ë ‰íŠ¸ì— ë³´ë‚¼ ë©”ì„¸ì§€");
+		return "redirect:/board/doF";
+	}
+	
+	@RequestMapping(value="doF", method = RequestMethod.GET)
+	public void doF(String msg) {
+		logger.info("doE ì‹¤í–‰ë¨");
 	}
 
-/*	@RequestMapping("doB")
-	public void doB() {
-		logger.info("doB called...............");
-	}*/
 }
