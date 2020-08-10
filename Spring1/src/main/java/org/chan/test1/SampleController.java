@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 //자바파일을 controller로 인식시켜주기 위해 @Controller를 사용
@@ -52,7 +53,15 @@ public class SampleController {
 	
 	@RequestMapping(value="doF", method = RequestMethod.GET)
 	public void doF(String msg) {
-		logger.info("doE 실행됨");
+		logger.info("doF 실행됨");
 	}
-
+	//JSON 데이터 처리
+	@RequestMapping(value="doJson",method = RequestMethod.GET)
+	public @ResponseBody SampleDTO doJson() {
+		SampleDTO dto = new SampleDTO();
+		dto.setId("abc");
+		dto.setPassword("1234");
+		
+		return dto;
+	}
 }
