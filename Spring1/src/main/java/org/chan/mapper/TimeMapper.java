@@ -4,11 +4,11 @@ import org.apache.ibatis.annotations.Select;
 
 
 public interface TimeMapper {
-	//ÇöÀç½Ã°£°ú ³¯Â¥¸¦ Á¶È¸ÇÏ´Â sql
+	
 	
 	@Select("select sysdate()")
-	public String getTime(); //Ãß»ó¸Ş¼Òµå
+	public String getTime(); //ì¶”ìƒë©”ì†Œë“œ
 
 	
-	public String getTime2(); //Ãß»ó¸Ş¼Òµå
+	public String getTime2(); 
 }
