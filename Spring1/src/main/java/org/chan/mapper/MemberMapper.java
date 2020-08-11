@@ -9,9 +9,9 @@ public interface MemberMapper {
 	//회원가입(insert)
 	public void createMember(MemberVO vo);
 	//회원가입(내정보) 수정하기 전 데이터조회  2가지 방식
-	//MemberMapperTest 32번쨰 줄처럼
+	//MemberMapperTest 44번쨰 줄처럼
 //	public MemberVO memberRead(String userid);
-	//MemberMapperTest 37번쨰 줄처럼
+	//MemberMapperTest 35번쨰 줄처럼
 	public MemberVO memberRead(MemberVO vo);
 
 	public List<MemberVO> memberList();
