@@ -10,7 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form role="form" action="">
+<form role="form" >
+	<input type="hidden" name="bno" value="${read.bno}">
 <table border ="1">
 	<tr>
 		<td colspan="2">${read.title}</td>
@@ -27,9 +28,9 @@
 	</tr>
 		<tr>
 			<td colspan="2">
-				<input type="submit" class="btn-warning" value="전송"> 
-				<input type="submit" class="btn-danger"value="삭제"> 
-				<input type="submit" class="btn-primary" value="목록">
+				<button type="submit" class="btn-warning">수정</button> 
+				<button type="submit" class="btn-danger">삭제</button> 
+				<button type="submit" class="btn-primary">목록</button>
 			</td>
 		</tr>
 	</table>

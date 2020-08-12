@@ -12,9 +12,9 @@
 <body>
 <h1>게시판 글쓰기화면. ${result}</h1>
 <form action="/chan/board/register" method ="post">
-	제목 :   <input type=text" name="title">
+	제목 :   <input type="text" name="title">
 	내용 :   <textarea name="content"></textarea>
-	작성자 : <input type=text" name="writer">
+	작성자 : <input type="text" name="writer">
 
 	<input type="submit" value="글쓰기">
 

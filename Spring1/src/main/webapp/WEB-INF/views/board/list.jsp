@@ -9,6 +9,18 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:choose>
+	<c:when test="${msg eq 'SUCCESS'}">
+		<script>
+			alert("수정되었습니다.")
+		</script>
+	</c:when>
+	<c:when test="${msg eq 'DSUCCESS'}">
+		<script>
+			alert("삭제되었습니다.")
+		</script>
+	</c:when>
+</c:choose>
 <table border ="1">
 	<tr>
 		<td colspan="2">제목</td>
@@ -25,8 +37,11 @@
 		<td>${board.viewcnt}</td>
 	</tr>
 	</c:forEach>
-
 	
+	<tr>	
+		<td colspan="5"><button type="button" onclick="location.href='register'">글쓰기</button></td>
+	</tr>
 </table>
+
 </body>
 </html>
