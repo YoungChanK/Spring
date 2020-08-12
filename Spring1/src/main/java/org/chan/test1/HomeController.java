@@ -31,8 +31,8 @@ public class HomeController {
 //		
 //		String formattedDate = dateFormat.format(date);
 		
-		String str="home.jsp¿¡ ¿À½Å°É È¯¿µÇÕ´Ï´Ù.";
-		//modelÀ» ÅëÇØ¼­ È­¸é¿¡ º¸³»ÁØ´Ù.
+		String str="home.jspìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.";
+		//modelï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ È­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 		model.addAttribute("str", str);
 		
 		return "home";

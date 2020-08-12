@@ -1,10 +1,10 @@
-package org.chan.mapper;
+package org.chan.service;
 
 import java.util.List;
 
 import org.chan.domain.BoardVO;
 
-public interface BoardMapper {
+public interface BoardService {
 	//글쓰기 
 	public void create(BoardVO vo) throws Exception;
 	//제목 클릭 후 한건에 대한 Select
