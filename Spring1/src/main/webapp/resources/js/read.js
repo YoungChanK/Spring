@@ -23,6 +23,6 @@ $(document).ready(function(){
 		formObj.submit();
 	});
 	$(".btn-primary").on("click",function(){
-		self.location = "board/listAll";
+		href.location = "/chan/board/list";
 	});
 })
