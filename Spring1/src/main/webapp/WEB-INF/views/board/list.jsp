@@ -42,11 +42,12 @@
 		<td colspan="5"><button type="button" onclick="location.href='register'">글쓰기</button></td>
 	</tr>
 	
-	<tr>
-		<td colspan="5">1 2 3 4</td>
-	</tr>
-	
+
 </table>
+<c:forEach var ="num" begin="${PageMaker.startPage}"
+						 end="${PageMaker.endPage}">
+	<a href="/chan/board/list?pageNum=${num}">${num}</a>
+</c:forEach>
 
 </body>
 </html>

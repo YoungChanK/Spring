@@ -2,6 +2,7 @@ package org.chan.test1;
 
 import org.chan.domain.BoardVO;
 import org.chan.domain.Criteria;
+import org.chan.domain.PageDTO;
 import org.chan.service.BoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,10 +37,12 @@ public class BoardController {
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public void listGet(Model model, Criteria cri) throws Exception{
-		logger.info("list Get.........");
+		logger.info("list Get.........1");
 //		model.addAttribute("list",service.listAll());
 		model.addAttribute("list",service.listPage(cri));
-		
+		logger.info("list Get.........2");
+		model.addAttribute("PageMaker",new PageDTO(cri,123));
+		logger.info("list Get.........3");
 	}
 	@RequestMapping(value = "read", method = RequestMethod.GET)
 	public void readGet(BoardVO board, Model model) throws Exception{
