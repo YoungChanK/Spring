@@ -3,6 +3,7 @@ package org.chan.service;
 import java.util.List;
 
 import org.chan.domain.BoardVO;
+import org.chan.domain.Criteria;
 import org.chan.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,11 @@ public class BoardSericeImpl implements BoardService{
 	public List<BoardVO> listAll() throws Exception {
 		// TODO Auto-generated method stub
 		return mapper.listAll();
+	}
+	@Override
+	public List<BoardVO> listPage(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.listPage(cri);
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 import org.chan.domain.BoardVO;
+import org.chan.domain.Criteria;
 import org.chan.domain.MemberVO;
 import org.chan.mapper.BoardMapper;
 import org.chan.mapper.MemberMapper;
@@ -22,7 +23,7 @@ public class BoardMapperTest {
 	@Autowired
 	private BoardMapper bomapper;
 	
-	@Test
+/*	@Test
 	public void testCreate() throws Exception{
 		BoardVO board = new BoardVO();
 		board.setTitle("새로운 제목을 넣습니다.");
@@ -52,12 +53,19 @@ public class BoardMapperTest {
 		BoardVO board = new BoardVO();
 		board.setBno(2);
 		bomapper.delete(board);
-	}
+	}*/
+//	@Test
+//	public void testListBoard()throws Exception {
+////		List<BoardVO>listAll= bomapper.listAll();
+////		listAll.forEach(board ->logger.info(""+board));
+//		bomapper.listAll().forEach(board ->logger.info(" "+board));
+//	}
 	@Test
-	public void testListBoard()throws Exception {
-//		List<BoardVO>listAll= bomapper.listAll();
-//		listAll.forEach(board ->logger.info(""+board));
-		bomapper.listAll().forEach(board ->logger.info(" "+board));
+	public void testListPage() throws Exception{
+		Criteria cri = new Criteria();
+		cri.setPageNum(2);
+		cri.setAmount(10);
+		bomapper.listPage(cri).forEach(board ->logger.info(""+board));
 	}
 	
 

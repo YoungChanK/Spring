@@ -3,6 +3,7 @@ package org.chan.service;
 import java.util.List;
 
 import org.chan.domain.BoardVO;
+import org.chan.domain.Criteria;
 
 public interface BoardService {
 	//글쓰기 
@@ -15,4 +16,7 @@ public interface BoardService {
 	public void delete(BoardVO vo)throws Exception;
 	//게시글 리스트
 	public List<BoardVO> listAll()throws Exception;
+	
+	//페이지 처리 한거 목록리스트 
+	public List<BoardVO> listPage(Criteria cri)throws Exception;
 }

@@ -41,6 +41,11 @@
 	<tr>	
 		<td colspan="5"><button type="button" onclick="location.href='register'">글쓰기</button></td>
 	</tr>
+	
+	<tr>
+		<td colspan="5">1 2 3 4</td>
+	</tr>
+	
 </table>
 
 </body>
