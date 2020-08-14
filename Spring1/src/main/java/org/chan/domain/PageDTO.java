@@ -23,7 +23,7 @@ public class PageDTO {
 		//startPage 계산식
 		this.startPage=this.endPage-9;
 		
-		int realEnd = (int)(Math.ceil(total*1.0)/cri.getAmount());
+		int realEnd = (int)(Math.ceil((total*1.0)/cri.getAmount()));
 		
 		if(realEnd <endPage) {
 			System.out.println("realEnd="+realEnd);//디버깅

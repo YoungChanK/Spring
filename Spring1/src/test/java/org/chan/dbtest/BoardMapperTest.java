@@ -60,13 +60,20 @@ public class BoardMapperTest {
 ////		listAll.forEach(board ->logger.info(""+board));
 //		bomapper.listAll().forEach(board ->logger.info(" "+board));
 //	}
+	//페이징 테스트
+//	@Test
+//	public void testListPage() throws Exception{
+//		Criteria cri = new Criteria();
+//		cri.setPageNum(2);
+//		cri.setAmount(10);
+//		bomapper.listPage(cri).forEach(board ->logger.info(""+board));
+//	}
 	@Test
-	public void testListPage() throws Exception{
+	public void testSearch() throws Exception{
 		Criteria cri = new Criteria();
-		cri.setPageNum(2);
-		cri.setAmount(10);
+		cri.setKeyword("새로운");
+		cri.setType("C");
 		bomapper.listPage(cri).forEach(board ->logger.info(""+board));
 	}
-	
 
 }

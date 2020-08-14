@@ -19,4 +19,6 @@ public interface BoardMapper {
 	//페이지 처리 한거 목록리스트 
 	public List<BoardVO> listPage(Criteria cri)throws Exception;
 	
+	public int getTotalCount(Criteria cri)throws Exception;
+	
 }

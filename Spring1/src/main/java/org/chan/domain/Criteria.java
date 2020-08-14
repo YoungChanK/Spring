@@ -5,6 +5,10 @@ public class Criteria {
 	private int pageNum;
 	//페이지 당 데이터 수
 	private int amount;
+	//검색 종류(제목만, 내용만,작성자만, 제목 + 내용 ...)
+	//keyword
+	private String type;
+	private String keyword;
 	
 	public Criteria() {
 		this(1,10);
@@ -14,6 +18,20 @@ public class Criteria {
 		this.amount=amount;
 	}
 	
+	
+	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 	public int getPageNum() {
 		return pageNum;
 	}
@@ -41,6 +59,6 @@ public class Criteria {
 	}
 	@Override
 	public String toString() {
-		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + "]";
+		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", type=" + type + ", keyword=" + keyword + "]";
 	}
 }

@@ -49,4 +49,10 @@ public class BoardSericeImpl implements BoardService{
 		return mapper.listPage(cri);
 	}
 
+	@Override
+	public int getTotalCount(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.getTotalCount(cri);
+	}
+
 }

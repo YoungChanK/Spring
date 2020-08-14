@@ -41,7 +41,7 @@ public class BoardController {
 //		model.addAttribute("list",service.listAll());
 		model.addAttribute("list",service.listPage(cri));
 		logger.info("list Get.........2");
-		model.addAttribute("PageMaker",new PageDTO(cri,123));
+		model.addAttribute("PageMaker",new PageDTO(cri,service.getTotalCount(cri)));
 		logger.info("list Get.........3");
 	}
 	@RequestMapping(value = "read", method = RequestMethod.GET)
