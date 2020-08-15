@@ -17,7 +17,7 @@
 	작성자 : <input type="text" name="writer">
 
 	<input type="submit" value="글쓰기">
-
+   <button type="button" onclick="location.href='list'">목록</button>
 </form>
 </body>
 </html>

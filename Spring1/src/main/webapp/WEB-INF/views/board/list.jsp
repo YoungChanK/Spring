@@ -61,7 +61,7 @@
 
 
 
-	<form action="/chan/board/list?keyword=${pageMaker.vo.keyword} "
+	<form action="/chan/board/list?keyword=${PageMaker.cri.keyword} "
 		method="get">
 		<select name="type">
 			<option value="T" <c:out value="${PageMaker.cri.type eq 'T'?'selected':''}"/>>제목

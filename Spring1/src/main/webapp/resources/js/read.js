@@ -25,4 +25,5 @@ $(document).ready(function(){
 	$(".btn-primary").on("click",function(){
 		href.location = "/chan/board/list";
 	});
+
 })
