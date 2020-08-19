@@ -34,6 +34,7 @@
 			</td>
 		</tr>
 	</table>
+	댓글 설정
 </form>
 </body>
 </html>
