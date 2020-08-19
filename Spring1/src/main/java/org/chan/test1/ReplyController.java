@@ -46,7 +46,7 @@ public class ReplyController {
 		try {
 			vo.setRno(rno);
 			reservice.update(vo);
-			entity = new ResponseEntity<String>("SUCCESS1",HttpStatus.OK);
+			entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -57,12 +57,12 @@ public class ReplyController {
 	
 	//삭제하기
 	@RequestMapping(value="{rno}",method= RequestMethod.DELETE)
-	public ResponseEntity<String> delete(@PathVariable("rno")int rno,@RequestBody ReplyVO vo) throws Exception{
+	public ResponseEntity<String> delete(@PathVariable("rno")int rno) throws Exception{
 		ResponseEntity<String> entity=null;
 		try {
 		
 			reservice.delete(rno);
-			entity = new ResponseEntity<String>("SUCCESS1",HttpStatus.OK);
+			entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

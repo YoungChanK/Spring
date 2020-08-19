@@ -15,7 +15,7 @@
 	select @rownum:=@rownum+1 as rownum, b.*
 	from (select @rownum:=0) as tmp, tbl_reply as b
 	where bno=#{bno}
-	order by bno desc
+	order by rno desc
 	) as boardList
    <![CDATA[
    where rownum > (#{cri.pageNum}-1)*#{cri.amount}
