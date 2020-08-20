@@ -98,6 +98,32 @@ $(document).ready(
 					}
 				})
 			})
+			//수정 버튼 클릭이벤트
+						$("#replyModBtn").on("click",function(){
+				var rno = $(".modal-title").html(); //rno값을 가져오기
+				var replytext = $("#replytext").val(); //댓글내용 가져오기
+				console.log(rno);
+				$.ajax({
+					type : "put",
+					url : "/chan/replies/"+rno,
+					headers : {
+						"Content-Type" : "application/json",
+						"X-HTTP-Method-Override" : "PUT"
+					},
+					data : JSON.stringify({
+						replytext : replytext,
+					}),
+					dataType : "text",
+					success : function(result) {
+						console.log("result:" + result);
+						if (result == 'SUCCESS') {
+							alert("수정 되었습니다");
+							$("#modDiv").hide("slow");
+							getAllList();
+						}
+					}
+				})
+			})
 		})
 
 
