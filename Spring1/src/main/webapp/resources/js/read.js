@@ -23,7 +23,9 @@ $(document).ready(function(){
 		formObj.submit();
 	});
 	$(".btn-primary").on("click",function(){
-		href.location = "/chan/board/list";
+		formObj.attr("action","/chan/board/list");
+		formObj.attr("method","get");
+		formObj.submit();
 	});
 
 })

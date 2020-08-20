@@ -4,9 +4,12 @@
 $(document).ready(
 		function() {
 			// 댓글 전체 리스트(페이징 처리된것)
-			var bno = 3; // 게시판번호
+			var bnovalue =$("#bno").val();
+			var bno = bnovalue ;// 게시판번호
 			var page = 1; // 페이지번호
+			
 			getAllList();
+			getAllList(page);
 			function getAllList(){
 				$("#modDiv").hide();
 				
@@ -15,7 +18,8 @@ $(document).ready(
 			// $.getJSON(서버URL[,데이터][,성공]
 			$.getJSON("/chan/replies/all/" + bno + "/" + page, function(data) {
 				console.log(data);
-				$(data).each(
+				//댓글 리스트
+				$(data.list).each(
 						function() {
 						      str += "<li data-rno='" + this.rno + "' class='replyLi'>"
 					            // <li data-rno= : 문자열 // this.rno : 지금 현재 위치의 rno
@@ -27,9 +31,54 @@ $(document).ready(
 							/* str = <li data-rno =5 class= replyLi>5:댓글</li> */
 							/* str = <li data-rno =4 class= replyLi>4:댓글</li> */
 						});
+				//댓글 페이징
+				console.log("전체 댓글 수 ="+data.replycnt);
+				//endNum
+		
+				var endNum=Math.ceil(page/10.0)*10;
+				var startNum=endNum-9;
+				var prev=startNum>1;
+				var next=false;
+				if(endNum*10>=data.replycnt){
+					endNum=Math.ceil(data.replycnt/10.0);
+				}
+				if(endNum*10<data.replycnt){
+					next=true;
+				}
+				var pagestr="";
+				//페이징 이전
+				console.log(next);
+				if(prev){
+					pagestr+="<li><a href='"+(startNum-1)+"'>이전</a></li>"
+					console.log("aaaaaaaaaa");
+				}
+				for(var i =startNum;i<=endNum;i++){
+					var active = page==i?"active":"";
+					pagestr+="<li class ='page-item"+active+"'><a href='"+i+"'>"+i+"</a></li>";
+				}
+				//페이징 다음
+				if(next){
+					pagestr+="<li><a href='"+(startNum-1)+"'>다음</a></li>"
+				}
+				$("#replyPage").html(pagestr);
+
 				$("#replies").html(str);
 			})
 			}
+			
+			$("#replyPage").on("click","li a",function(e){
+				e.preventDefault();//이벤트취소
+				var targetPageNum=$(this).attr("href"); //<a href ="1">1</a>
+				page=targetPageNum;
+				getAllList(page);
+			
+			
+			
+			})
+			
+			
+			
+			
 			$("#replyAddBtn").on("click", function() {
 				var replyer = $("#newReplyWriter").val();
 				var replytext = $("#newReplyText").val();
@@ -63,7 +112,9 @@ $(document).ready(
 				
 				}); //댓글쓰기 ajax end
 			})//버튼 클릭 이벤트 end
+			//수정버튼을 클릭했을때
 			$("#replies").on("click",".replyLi button",function(){
+				
 				var reply=$(this).parent();
 				console.log(reply);
 				var rno=reply.attr("data-rno");
@@ -93,7 +144,7 @@ $(document).ready(
 						if (result == 'SUCCESS') {
 							alert("삭제 되었습니다");
 							$("#modDiv").hide("slow");
-							getAllList();
+							getAllList(page);
 						}
 					}
 				})
@@ -119,7 +170,7 @@ $(document).ready(
 						if (result == 'SUCCESS') {
 							alert("수정 되었습니다");
 							$("#modDiv").hide("slow");
-							getAllList();
+							getAllList(page);
 						}
 					}
 				})

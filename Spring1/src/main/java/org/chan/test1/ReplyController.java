@@ -3,6 +3,7 @@ package org.chan.test1;
 import java.util.List;
 
 import org.chan.domain.Criteria;
+import org.chan.domain.ReplyPageVO;
 import org.chan.domain.ReplyVO;
 import org.chan.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReplyController {
 	@Autowired
 	private ReplyService reservice;
-	
+	//댓글목록 리스트
 	@RequestMapping(value="/all/{bno}/{page}", method=RequestMethod.GET)
-	public ResponseEntity<List<ReplyVO>> list(@PathVariable("bno")int bno,@PathVariable("page")int page) throws Exception{
+	public ResponseEntity<ReplyPageVO>  list(@PathVariable("bno")int bno,@PathVariable("page")int page) throws Exception{
 		Criteria cri= new Criteria(page,10); 
 		return new ResponseEntity<>(reservice.list(bno,cri),HttpStatus.OK);
 		

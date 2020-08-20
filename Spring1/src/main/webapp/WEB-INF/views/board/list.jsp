@@ -31,7 +31,7 @@
 	<c:forEach items="${list}" var="board">
 	<tr>
 		<td>${board.bno}</td>
-		<td><a href = "/chan/board/read?bno=${board.bno}">${board.title}</a></td>
+		<td><a href = "/chan/board/read?bno=${board.bno}&pageNum=${PageMaker.cri.pageNum}">${board.title}</a></td>
 		<td>${board.writer}</td>
 		<td>${board.regdate}</td>
 		<td>${board.viewcnt}</td>

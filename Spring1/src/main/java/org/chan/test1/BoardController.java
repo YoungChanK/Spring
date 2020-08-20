@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -40,12 +41,11 @@ public class BoardController {
 		logger.info("list Get.........1");
 //		model.addAttribute("list",service.listAll());
 		model.addAttribute("list",service.listPage(cri));
-
 		model.addAttribute("PageMaker",new PageDTO(cri,service.getTotalCount(cri)));
 	
 	}
 	@RequestMapping(value = "read", method = RequestMethod.GET)
-	public void readGet(BoardVO board, Model model) throws Exception{
+	public void readGet(BoardVO board, Model model, @ModelAttribute("cri") Criteria cri) throws Exception{
 		logger.info("read Get........."+board);
 		model.addAttribute("read",service.read(board));
 

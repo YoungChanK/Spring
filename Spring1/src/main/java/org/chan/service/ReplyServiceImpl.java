@@ -3,6 +3,7 @@ package org.chan.service;
 import java.util.List;
 
 import org.chan.domain.Criteria;
+import org.chan.domain.ReplyPageVO;
 import org.chan.domain.ReplyVO;
 import org.chan.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,9 @@ public class ReplyServiceImpl implements ReplyService{
 	private ReplyMapper remapper;
 	
 	@Override
-	public List<ReplyVO> list(int bno,Criteria cri) throws Exception {
+	public ReplyPageVO list(int bno,Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return remapper.list(bno, cri);
+		return new ReplyPageVO(remapper.list(bno, cri),remapper.getCountByBno(bno));
 	}
 
 	@Override

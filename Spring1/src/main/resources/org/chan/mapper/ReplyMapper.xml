@@ -21,8 +21,10 @@
    where rownum > (#{cri.pageNum}-1)*#{cri.amount}
    and rownum <= #{cri.pageNum}*#{cri.amount}
    ]]>
-
-		
+	</select>
+	<!-- 전체댓글수 -->
+	<select id="getCountByBno" resultType="int">
+		select count(*) from tbl_reply where bno=#{bno};
 	</select>
 	<insert id="create">
 		insert into tbl_reply(bno,replytext,replyer) values(#{bno},#{replytext},#{replyer});
