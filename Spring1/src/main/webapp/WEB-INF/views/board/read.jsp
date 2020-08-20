@@ -6,6 +6,7 @@
 <head>
 <script type="text/javascript" src="../resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../resources/js/read.js"></script>
+<script type="text/javascript" src="../resources/js/ajaxtest.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -34,7 +35,19 @@
 			</td>
 		</tr>
 	</table>
-	댓글 설정
+	<div>
+	<div>
+		작성자 : <input type="text" name ="replyer" id="newReplyWriter">
+	</div>
+	<div>
+		댓글내용 : <input type="text" name ="replytext" id="newReplyText">
+	</div>
+	<button id="replyAddBtn">댓글 등록</button>
+</div>
+
+<ul id="replies">
+
+</ul>
 </form>
 </body>
 </html>
