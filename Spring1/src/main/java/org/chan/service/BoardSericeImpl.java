@@ -7,6 +7,7 @@ import org.chan.domain.Criteria;
 import org.chan.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 // @Service 무조건 넣어야함!!!!!!
 @Service
 public class BoardSericeImpl implements BoardService{
@@ -19,10 +20,11 @@ public class BoardSericeImpl implements BoardService{
 		// TODO Auto-generated method stub
 		mapper.create(vo);
 	}
-
+	@Transactional
 	@Override
 	public BoardVO read(BoardVO vo) throws Exception {
 		// TODO Auto-generated method stub
+		mapper.cnt(vo);
 		return mapper.read(vo);
 	}
 
@@ -37,6 +39,8 @@ public class BoardSericeImpl implements BoardService{
 		// TODO Auto-generated method stub
 		mapper.delete(vo);
 	}
+
+
 
 	@Override
 	public List<BoardVO> listAll() throws Exception {

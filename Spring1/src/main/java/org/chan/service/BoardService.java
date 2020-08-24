@@ -2,6 +2,8 @@ package org.chan.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Update;
 import org.chan.domain.BoardVO;
 import org.chan.domain.Criteria;
 
@@ -14,6 +16,8 @@ public interface BoardService {
 	public void update(BoardVO vo) throws Exception;
 	//글삭제
 	public void delete(BoardVO vo)throws Exception;
+
+//	public void cnt(BoardVO vo)throws Exception;
 	//게시글 리스트
 	public List<BoardVO> listAll()throws Exception;
 	

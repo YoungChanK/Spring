@@ -48,6 +48,7 @@ public class BoardController {
 	public void readGet(BoardVO board, Model model, @ModelAttribute("cri") Criteria cri) throws Exception{
 		logger.info("read Get........."+board);
 		model.addAttribute("read",service.read(board));
+	
 
 	}
 	//수정화면으로 이동
