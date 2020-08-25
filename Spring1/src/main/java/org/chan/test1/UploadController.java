@@ -1,5 +1,7 @@
 package org.chan.test1;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
 public class UploadController {
@@ -58,6 +62,17 @@ public class UploadController {
    	return str.replace("-",File.separator);
    }
    
+   //이미지 파일을 판단할수 있게 하는 메소드
+   	private boolean checkImageType(File file) {
+   		try {
+   			String contentType= Files.probeContentType(file.toPath()); //type을 받아오기
+			return contentType.startsWith("image");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+   		return false;
+   	}
    
    
    
@@ -96,7 +111,15 @@ public class UploadController {
 //	         File saveFile = new File(uploadPath,multipartFile.getOriginalFilename()); //파일업로드 경로
 	         
 	         try {
-	        	 multipartFile.transferTo(saveFile);
+	        	 //파일 저장할때 이미지파일이면 썸내일 만들어서 저장
+	        	 if(checkImageType(saveFile)) {
+	        		 FileOutputStream thumbnail = new FileOutputStream(new File(uploadFolder,"s_"+uploadFileName));
+	        		 Thumbnailator.createThumbnail(multipartFile.getInputStream(),thumbnail,100, 100);
+	        		 thumbnail.close();
+
+	        	 }
+	        	 //그냥 파일 저장
+	        	 multipartFile.transferTo(saveFile); //transferTo 폴더에 저장
 	         }catch(Exception e) {
 	            logger.info(e.getMessage());
 	         }
