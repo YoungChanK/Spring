@@ -55,6 +55,9 @@
    	<update id="cnt">
    		   	update tbl_board set viewcnt = viewcnt+1 where bno=#{bno};
    	</update>
+   	<update id="updateReplyCnt">
+   		update tbl_board set replycnt = replycnt+#{amount} where bno = ${bno}
+   	</update>
    	<select id="listAll" resultType="org.chan.domain.BoardVO">
 <!--    	쿼리문 안에 > 꺽새 모양이 있으면 select을 닫는걸로 인식하기 떄문에 CDATA안에 있는  <,>꺽새모양은 연산자로 인식하도록 표시해주는것 -  -->
    	<![CDATA[ 

@@ -1,6 +1,8 @@
 package org.chan.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.chan.domain.BoardVO;
 import org.chan.domain.Criteria;
@@ -58,5 +60,16 @@ public class BoardSericeImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return mapper.getTotalCount(cri);
 	}
+/*	@Override
+	public void updateReplyCnt(Integer bno, int amount) throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("bno", bno);
+		paramMap.put("amount", amount);
+		
+		session.update(namespace + ".updateReplyCnt", paramMap);
+		
+	}*/
+	
 
 }

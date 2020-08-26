@@ -19,7 +19,24 @@ $(document).ready(function(){
 		return true;
 	}
 	
-	
+	function shwoUploadFile(uploadResultArr){
+		var str = "";
+			//data는 배열 , for문과 같은 반복문을 이용해서 0~끝까지를 화면에 출력(each)
+			$(uploadResultArr).each(function(i,obj){
+		
+				if(!obj.image){
+					//이미지 파일이면(image:false)
+					str+="<li><img src='resources/image/attach.jpg'>"+obj.fileName+"</li>";
+				}else{
+					//이미지 파일이 아니면
+					var fileCallPath=encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
+					str+="<li><img src='/chan/display?fileName="+fileCallPath+"'></li>";
+				}
+
+			})
+			$(".uploadResult ul").append(str);
+		
+	}
 	
 	
 	$(".fileDrop").on("dragenter dragover",function(e){
@@ -50,16 +67,17 @@ $(document).ready(function(){
 		$.ajax({
 			url:"/chan/uploadajax",
 			data:formData,
-			dataType:"text",
+			dataType:"json",
 			//processData 와 contentType은 파일업로드시 false가 되어야함.
 			processData:false,
 			contentType:false,
 			type:'POST',
 			success:function(data){
 				console.log(data);
-				alert(data);
+				shwoUploadFile(data);
 			}
 		})
+	
 		
 	});
 	

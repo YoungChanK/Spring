@@ -25,4 +25,6 @@ public interface BoardService {
 	public List<BoardVO> listPage(Criteria cri)throws Exception;
 	
 	public int getTotalCount(Criteria cri)throws Exception;
+	
+//	public void  updateReplyCnt(Integer bno, int amount)throws Exception;
 }

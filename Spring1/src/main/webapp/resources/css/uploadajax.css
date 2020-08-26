@@ -1,0 +1,12 @@
+@charset "UTF-8";
+.uploadResult{
+	width:100%;
+	background-color:gray;
+}
+.uploadResult ul li img{
+	width:20px;
+}
+.uploadResult ul li{
+	list-style:none;
+	padding :10px;
+}

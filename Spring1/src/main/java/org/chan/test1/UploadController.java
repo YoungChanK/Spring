@@ -1,18 +1,25 @@
 package org.chan.test1;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import org.chan.domain.AttachFileDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,7 +41,8 @@ public class UploadController {
    @RequestMapping(value = "uploadForm", method = RequestMethod.POST)
    public void uploadForm(MultipartFile[] file)throws Exception{
       for(MultipartFile miltipartFile : file) {
-         
+    	 
+    	  
          logger.info("파일명 : "+miltipartFile.getOriginalFilename());
          logger.info("파일명 : "+miltipartFile.getSize());
          logger.info("파일명 : "+miltipartFile.getContentType());
@@ -81,10 +89,13 @@ public class UploadController {
 	   logger.info("파일 업로드  ajax 화면");
    }
    @ResponseBody
-   @RequestMapping(value = "uploadajax", method = RequestMethod.POST,produces ="text/plain;charset=UTF-8")
-   public ResponseEntity<String> uploadAjaxPost(MultipartFile[] file) throws Exception {
+   @RequestMapping(value = "uploadajax", method = RequestMethod.POST,produces =MediaType.APPLICATION_JSON_UTF8_VALUE) //list타입사용시 media타입으로 변경
+   public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] file) throws Exception {
 	   logger.info("파일 업로드  ajax 화면");
-
+	   String uploadPath="C:\\upload";
+	   
+	   //AttachFileDTO 클래스에 list배열로 생성
+	   List<AttachFileDTO> list = new ArrayList<>();
 	   
 	   File uploadFolder=new File(uploadPath,getFolder());
 	   logger.info("파일업로드 폴더"+uploadFolder);
@@ -101,30 +112,68 @@ public class UploadController {
 	         logger.info("파일명 : "+multipartFile.getOriginalFilename());
 	         logger.info("파일크기 : "+multipartFile.getSize());
 	         logger.info("파일종료 : "+multipartFile.getContentType());
-//	         logger.info("파일 저장 위치 : "+uploadPath);
+	         logger.info("파일 저장 위치 : "+uploadPath);
+	         
+	         AttachFileDTO attach = new AttachFileDTO();
+	    	  String fileName =multipartFile.getOriginalFilename(); //fileName
+	    	  //AttachFileDTO 클래스에 fileName 변수에 파일이름 저장
+	    	attach.setFileName(fileName);
+	         
 	         
 	         String uploadFileName=multipartFile.getOriginalFilename();
 	         UUID uuid=UUID.randomUUID();
-	         uploadFileName = uuid+uploadFileName;
+	         uploadFileName = uuid+"_"+uploadFileName;
 	         
-	         File saveFile = new File(uploadFolder,uploadFileName); //파일업로드 경로
 //	         File saveFile = new File(uploadPath,multipartFile.getOriginalFilename()); //파일업로드 경로
 	         
 	         try {
+	        	 File saveFile = new File(uploadFolder,uploadFileName); //파일업로드 경로
+	        	 //그냥 파일 저장
+	        	 multipartFile.transferTo(saveFile); //transferTo 폴더에 저장
+	        	//AttachFileDTO 클래스에 setUploadPath변수에 날짜랑 이름 저장
+	        	 attach.setUploadPath(getFolder());
+	        	 System.out.println("getFolder"+getFolder());
+	          	 //AttachFileDTO 클래스에 UUID변수에 저장
+	        	 attach.setUuid(uuid.toString());
 	        	 //파일 저장할때 이미지파일이면 썸내일 만들어서 저장
 	        	 if(checkImageType(saveFile)) {
+	        		 //업로드된 파일이 이미지라는 뜻
+	        		 attach.setImage(true);
+	        		 
 	        		 FileOutputStream thumbnail = new FileOutputStream(new File(uploadFolder,"s_"+uploadFileName));
 	        		 Thumbnailator.createThumbnail(multipartFile.getInputStream(),thumbnail,100, 100);
 	        		 thumbnail.close();
 
 	        	 }
-	        	 //그냥 파일 저장
-	        	 multipartFile.transferTo(saveFile); //transferTo 폴더에 저장
+	        	 
+	        	 list.add(attach);
+	        	 logger.info("list : "+list);
 	         }catch(Exception e) {
 	            logger.info(e.getMessage());
 	         }
 	      }
-	   return new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
+	   return new ResponseEntity<>(list,HttpStatus.OK);
    }
    
+   
+   
+   	//display(업로드 파일이 이미지 인거)
+   @RequestMapping(value = "display", method = RequestMethod.GET)
+   public ResponseEntity<byte[]> getFile(String fileName) {
+	   logger.info("fileName="+fileName);
+	   File file= new File("C:\\upload\\"+fileName);
+	   logger.info("file="+file);
+	   ResponseEntity<byte[]> result=null;
+	   
+	   try {
+		   HttpHeaders header = new HttpHeaders();
+		   header.add("Content-Type",Files.probeContentType(file.toPath()));
+		   result=new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),header,HttpStatus.OK);
+	} catch (IOException e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	   return result;
+   }
+   //download(업로드 파일이 이미지가 아닌거)
 }
