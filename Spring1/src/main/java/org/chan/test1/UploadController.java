@@ -9,11 +9,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import javax.annotation.Resource;
+
 
 import org.chan.domain.AttachFileDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,8 +32,8 @@ import net.coobird.thumbnailator.Thumbnailator;
 @Controller
 public class UploadController {
    
-   @Resource(name="uploadPath")
-   private String uploadPath;
+//   @Resource(name="uploadPath")
+//   private String uploadPath;
    private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
    
    @RequestMapping(value = "uploadForm", method = RequestMethod.GET)
@@ -41,7 +43,7 @@ public class UploadController {
    @RequestMapping(value = "uploadForm", method = RequestMethod.POST)
    public void uploadForm(MultipartFile[] file)throws Exception{
       for(MultipartFile miltipartFile : file) {
-    	 
+    	   String uploadPath="C:\\upload";
     	  
          logger.info("파일명 : "+miltipartFile.getOriginalFilename());
          logger.info("파일명 : "+miltipartFile.getSize());
@@ -176,4 +178,22 @@ public class UploadController {
 	   return result;
    }
    //download(업로드 파일이 이미지가 아닌거)
+   @RequestMapping(value = "download", method = RequestMethod.GET,produces =MediaType.APPLICATION_OCTET_STREAM_VALUE)
+   public ResponseEntity<Resource> downloadFile(String fileName) throws Exception {
+	   logger.info("download file : "+fileName);
+	   Resource resource = new FileSystemResource("C:\\upload\\"+fileName);
+	   logger.info("resource  : "+resource);
+	   String resourceName=resource.getFilename();
+	   HttpHeaders header = new HttpHeaders();
+	   
+	   try {
+		   header.add("Content-Disponsition", "attachment; filename="+new String(resourceName.getBytes("UTF-8"),"ISO-8859-1"));
+	} catch (UnsupportedOperationException e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	   return new ResponseEntity<Resource>(resource,header,HttpStatus.OK);
+	   
+   
+   }
 }

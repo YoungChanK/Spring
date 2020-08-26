@@ -23,13 +23,15 @@ $(document).ready(function(){
 		var str = "";
 			//data는 배열 , for문과 같은 반복문을 이용해서 0~끝까지를 화면에 출력(each)
 			$(uploadResultArr).each(function(i,obj){
-		
+				var fileCallPath=encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
 				if(!obj.image){
-					//이미지 파일이면(image:false)
-					str+="<li><img src='resources/image/attach.jpg'>"+obj.fileName+"</li>";
+					//이미지 파일이 아니면(image:false) - download 할수있도록..
+//					var fileCallPath=encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
+					str+="<li><a href ='/chan/download?fileName="+fileCallPath+"'>"
+					+"<img src='resources/image/attach.jpg'>"+obj.fileName+"</a></li>";
 				}else{
-					//이미지 파일이 아니면
-					var fileCallPath=encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
+					//이미지 파일이 아니면(image:ture) - display 웹에 이미지 출력..
+//					var fileCallPath=encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
 					str+="<li><img src='/chan/display?fileName="+fileCallPath+"'></li>";
 				}
 
