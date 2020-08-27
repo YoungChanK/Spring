@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.chan.domain.BoardVO;
 import org.chan.domain.Criteria;
+import org.chan.mapper.BoardAttachMapper;
 import org.chan.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,21 @@ public class BoardSericeImpl implements BoardService{
 	
 	@Autowired
 	private BoardMapper mapper;
+	@Autowired
+	private BoardAttachMapper attachmapper;
 	//글쓰기
+	
+	@Transactional
 	@Override
 	public void create(BoardVO vo) throws Exception {
 		// TODO Auto-generated method stub
+		//tbl_board에 insert
 		mapper.create(vo);
+		//tbl_attach에 insert
+		vo.getAttachList().forEach(attach->{
+			attach.setBno(vo.getBno());
+		attachmapper.insert(attach);
+		});
 	}
 	@Transactional
 	@Override

@@ -30,7 +30,9 @@ public class BoardController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerPOST(BoardVO board, Model model) throws Exception{
 		logger.info("register POST.......");
+		logger.info("boardVO에 저장되어 있는 값 확인"+board);
 		service.create(board); //insert sql
+		
 		model.addAttribute("result","success");
 		return "redirect://board/list";
 		

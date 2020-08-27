@@ -7,7 +7,7 @@
 <title>파일 업로드 하기 위한 폼</title>
 <script type="text/javascript" src="resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="resources/js/uploadajax.js"></script>
-<link  rel="stylesheet" tpye="text/css" href="resources/css/uploadajax.css">
+<link  rel="stylesheet" type="text/css" href="resources/css/uploadajax.css">
 </head>
 <body>
 <H3>파일 업로드하기 위한 ajax</H3>
