@@ -27,12 +27,13 @@ $(document).ready(function(){
 				if(!obj.image){
 					//이미지 파일이 아니면(image:false) - download 할수있도록..
 //					var fileCallPath=encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
-					str+="<li><a href ='/chan/download?fileName="+fileCallPath+"'>"
-					+"<img src='resources/image/attach.jpg'>"+obj.fileName+"</a></li>";
+					str+="<li><a href ='/chan/download?fileName="+fileCallPath+"'><img src='resources/image/attach.jpg'>"+obj.fileName+"</a></li>";
+				    
 				}else{
 					//이미지 파일이 아니면(image:ture) - display 웹에 이미지 출력..
 //					var fileCallPath=encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
-					str+="<li><img src='/chan/display?fileName="+fileCallPath+"'></li>";
+//					str+="<li><img src='/chan/display?fileName="+fileCallPath+"'></li>";
+					str += "<li><img src='/chan/display?fileName="+fileCallPath+"'>"+"<span data-file='"+fileCallPath+"' data-type='image'>X</span>" + "</li>";  
 				}
 
 			})
@@ -81,7 +82,28 @@ $(document).ready(function(){
 		})
 	
 		
-	});
+	})// drop 이벤트 end
+	
+	   $(".uploadResult").on("click", "span", function(e){
+		      //alert("x를 클릭")
+		   
+		   var fileName = $(this).data("file")//파일명을 저장
+		   var type=$(this).data("type")//이미지 파일
+//		   alert(fileName);
+//		   alert(type);
+		   
+		      $.ajax({
+		         url : '/chan/deleteFile',
+		         data: {fileName:fileName,type:type}, //어떤파일 삭제해야 하는지(파일명),
+		         dataType: 'text',
+		         type: 'POST',
+		         success: function(data){
+		            
+		         }
+		      })
+		      
+		   })//x에 대한 click 이벤트end
+		   
 	
 	
 })

@@ -2,6 +2,7 @@ package org.chan.test1;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -195,5 +196,36 @@ public class UploadController {
 	   return new ResponseEntity<Resource>(resource,header,HttpStatus.OK);
 	   
    
+   } //download end
+   
+   //파일 삭제 start
+   //파일 삭제 end
+   @RequestMapping(value = "deleteFile", method = RequestMethod.POST)
+   public ResponseEntity<String> deleteFile(String fileName,String type) throws Exception{
+	   logger.info("fileName :"+fileName);
+	   logger.info("type : "+type);
+	   
+	   File file;
+	   
+	   try {	
+		   //경로에 있는 % 를 \ 로 변경
+		   file = new File("C:\\upload\\"+URLDecoder.decode(fileName,"UTF-8"));
+		   if(type.equals("image")) {
+			   file.delete();
+		   }
+	} catch (UnsupportedOperationException e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	   
+	   
+	   
+	   return null;
+	   
    }
+   
+   
+   
+   
+   
 }
