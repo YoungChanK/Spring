@@ -31,9 +31,9 @@ $(document).ready(function(){
 				    
 				}else{
 					//이미지 파일이 아니면(image:ture) - display 웹에 이미지 출력..
-//					var fileCallPath=encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
+					var sfileCallPath=encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName); //썸네일 파일명 보내기
 //					str+="<li><img src='/chan/display?fileName="+fileCallPath+"'></li>";
-					str += "<li><img src='/chan/display?fileName="+fileCallPath+"'>"+"<span data-file='"+fileCallPath+"' data-type='image'>X</span>" + "</li>";  
+					str += "<li><img src='/chan/display?fileName="+fileCallPath+"'>"+"<span data-file='"+sfileCallPath+"' data-type='image'>X</span>" + "</li>";  
 				}
 
 			})
@@ -98,7 +98,7 @@ $(document).ready(function(){
 		         dataType: 'text',
 		         type: 'POST',
 		         success: function(data){
-		            
+		            alert(data);
 		         }
 		      })
 		      

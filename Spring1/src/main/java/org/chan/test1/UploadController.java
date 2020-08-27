@@ -206,12 +206,19 @@ public class UploadController {
 	   logger.info("type : "+type);
 	   
 	   File file;
-	   
+
 	   try {	
 		   //경로에 있는 % 를 \ 로 변경
 		   file = new File("C:\\upload\\"+URLDecoder.decode(fileName,"UTF-8"));
+		   //썸내일 이미지 파일 삭제
+		   file.delete();
 		   if(type.equals("image")) {
+			   //절대경로에 있는 파일의 s_를 제거
+			   String originalFile=file.getAbsolutePath().replace("s_","");
+			   file = new File(originalFile);
+			   //원본 이미지 삭제
 			   file.delete();
+
 		   }
 	} catch (UnsupportedOperationException e) {
 		// TODO: handle exception
@@ -220,7 +227,7 @@ public class UploadController {
 	   
 	   
 	   
-	   return null;
+	   return new ResponseEntity<String>("deleted"/*ajax의 success:funcion(data)에 들어가서 출력*/,HttpStatus.OK/*통신이 성공했으면*/) ;
 	   
    }
    
