@@ -20,4 +20,6 @@ public interface MemberMapper {
 	
 	public void deleteMember(MemberVO vo);
 //	public MemberVO readWithPW(String userid, String userpw)throws Exception;
+	
+	public MemberVO login(MemberVO member);
 }

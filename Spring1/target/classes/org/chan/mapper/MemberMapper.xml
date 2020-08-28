@@ -25,4 +25,11 @@
 		delete from tbl_member
 		where userid = #{userid}
 	</delete>
+	
+	<!--로그인 정보 조회  -->
+	<select id="login" resultType="org.chan.domain.MemberVO">
+		select userid,userpw,username from tbl_member where userid=#{userid} and userpw=#{userpw}
+	</select>
+	
+	
 </mapper>

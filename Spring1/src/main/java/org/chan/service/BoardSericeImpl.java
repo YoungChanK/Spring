@@ -51,11 +51,12 @@ public class BoardSericeImpl implements BoardService{
 		// TODO Auto-generated method stub
 		mapper.update(vo);
 	}
-
+//	@Transactional
 	@Override
 	public void delete(BoardVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		mapper.delete(vo);
+//		attachmapper.delete(vo);
 	}
 
 

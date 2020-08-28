@@ -38,7 +38,7 @@
    	<interceptor>
    		<mapping path="/doA"/>
    		<mapping path="/dob"/>
-   		<beans:ref bean="sampleInterceptor"
+   		<beans:ref bean="sampleInterceptor"/>
    	</interceptor>
    </interceptors>
 	

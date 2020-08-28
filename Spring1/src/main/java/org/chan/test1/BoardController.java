@@ -55,7 +55,10 @@ public class BoardController {
 	@RequestMapping(value = "read", method = RequestMethod.GET)
 	public void readGet(BoardVO board, Model model, @ModelAttribute("cri") Criteria cri) throws Exception{
 		logger.info("read Get........."+board);
+		logger.info("read Get........."+board.getRegdate());
+		
 		model.addAttribute("read",service.read(board));
+		
 	
 
 	}

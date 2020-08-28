@@ -44,7 +44,7 @@ public class HomeController {
 	}
 	@RequestMapping(value="/doB", method = RequestMethod.GET)
 	public void doB(Locale local,Model model) {
-		System.out.println("doA................");
+		System.out.println("doB................");
 		model.addAttribute("result","DOB RESULT");
 	}
 	

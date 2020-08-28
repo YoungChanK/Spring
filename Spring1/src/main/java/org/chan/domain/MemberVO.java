@@ -3,12 +3,13 @@ package org.chan.domain;
 import java.util.Date;
 
 public class MemberVO {
-	String userid;
-	String userpw;
-	String username;
-	String email;
-	Date regdate;
-	Date updatedate;
+	private String userid;
+	private String userpw;
+	private String username;
+	private String email;
+	private Date regdate;
+	private Date updatedate;
+	private boolean useCookie;
 	public String getUserid() {
 		return userid;
 	}
@@ -45,10 +46,17 @@ public class MemberVO {
 	public void setUpdatedate(Date updatedate) {
 		this.updatedate = updatedate;
 	}
+	
+	public boolean isUseCookie() {
+		return useCookie;
+	}
+	public void setUseCookie(boolean useCookie) {
+		this.useCookie = useCookie;
+	}
 	@Override
 	public String toString() {
 		return "MemberVO [userid=" + userid + ", userpw=" + userpw + ", username=" + username + ", email=" + email
-				+ ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
+				+ ", regdate=" + regdate + ", updatedate=" + updatedate + ", useCookie=" + useCookie + "]";
 	}
 	
 }
