@@ -36,6 +36,16 @@ public class HomeController {
 		model.addAttribute("str", str);
 		
 		return "home";
+	} //home 메소드 끝
+	
+	@RequestMapping(value="/doA", method = RequestMethod.GET)
+	public void doA(Locale local,Model model) {
+		System.out.println("doA................");
+	}
+	@RequestMapping(value="/doB", method = RequestMethod.GET)
+	public void doB(Locale local,Model model) {
+		System.out.println("doA................");
+		model.addAttribute("result","DOB RESULT");
 	}
 	
 }
