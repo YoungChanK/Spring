@@ -27,7 +27,7 @@ public class MemberController {
 		logger.info("로그인 화면 이동");
 	}
 	//로그인처리
-	@RequestMapping(value="login", method=RequestMethod.POST)
+	@RequestMapping(value="loginPost", method=RequestMethod.POST)
 	public void LoginPost(MemberVO member,Model model)throws Exception{
 		logger.info("로그인 처리");
 		MemberVO vo= meservice.login(member);

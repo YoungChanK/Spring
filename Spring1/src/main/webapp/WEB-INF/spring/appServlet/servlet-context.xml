@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="org.chan.test1" />
+
 	
 	
 <!-- 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 		 -->
@@ -33,7 +33,13 @@
    <beans:constructor-arg value="C:\\upload"></beans:constructor-arg>
    <!-- 자바에서는 역슬레쉬 \가 두개가 있어야 업로드시 인식할 수 있다. -->
    </beans:bean>
+   
+   <!-- 인터셉터 설정 -->
+   
    <beans:bean id="sampleInterceptor" class ="org.chan.intercertor.SampleInterceptor"></beans:bean>
+   
+   <beans:bean id="loginInterceptor" class ="org.chan.intercertor.LoginInterceptor"></beans:bean>
+   
    <interceptors>
    	<interceptor>
    		<mapping path="/doA"/>
@@ -41,6 +47,14 @@
    		<beans:ref bean="sampleInterceptor"/>
    	</interceptor>
    </interceptors>
+   
+   <interceptors>
+   	<interceptor>
+   		<mapping path="/member/loginPost"/>
+   		<beans:ref bean="loginInterceptor"/>
+   	</interceptor>
+   </interceptors>
 	
+	<context:component-scan base-package="org.chan.test1" />
 	
 </beans:beans>

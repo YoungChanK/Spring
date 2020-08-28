@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/chan/member/loginPost" method="post">
-	ID : <input type ="text" name = "userid">
-	PW : <input type ="password" name = "userpw">
-	<input type="submit" value="로그인">
-</form>
+
 </body>
 </html>
