@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.chan.domain.BoardAttachVO;
 import org.chan.domain.BoardVO;
 import org.chan.domain.Criteria;
 import org.chan.mapper.BoardAttachMapper;
@@ -26,10 +27,14 @@ public class BoardSericeImpl implements BoardService{
 	public void create(BoardVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		//tbl_board에 insert
+		System.out.println(vo.getBno());
 		mapper.create(vo);
+		System.out.println(vo.getBno());
 		//tbl_attach에 insert
-		vo.getAttachList().forEach(attach->{
-			attach.setBno(vo.getBno());
+		vo.getAttachList().forEach(attach->{ 
+			System.out.println(attach.getBno());
+			attach.setBno(vo.getBno()); 
+			System.out.println(attach.getBno());
 		attachmapper.insert(attach);
 		});
 	}
@@ -71,6 +76,13 @@ public class BoardSericeImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return mapper.getTotalCount(cri);
 	}
+	@Override
+	public List<BoardAttachVO> getAttachList(int bno) throws Exception {
+		// TODO Auto-generated method stub
+		return attachmapper.select(bno);
+	}
+	
+	
 /*	@Override
 	public void updateReplyCnt(Integer bno, int amount) throws Exception {
 		Map<String, Object> paramMap = new HashMap<String, Object>();

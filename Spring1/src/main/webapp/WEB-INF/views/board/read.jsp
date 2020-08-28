@@ -7,6 +7,7 @@
 <script type="text/javascript" src="../resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../resources/js/read.js"></script>
 <script type="text/javascript" src="../resources/js/ajaxtest.js"></script>
+<link  rel="stylesheet" type="text/css" href="../resources/css/read.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -36,6 +37,11 @@
 			</tr>
 		</table>
 	</form>
+	<div class="uploadResult">
+		<ul>
+		
+		</ul>
+	</div>
 	<div>
 		<div>
 			작성자 : <input type="text" name="replyer" id="newReplyWriter">

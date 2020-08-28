@@ -39,8 +39,15 @@
    
    
    	<insert id="create">
-   		insert into tbl_board(title,content,writer)
-		values(#{title},#{content},#{writer});
+   	<!--selectKey: insert문전에 bno를 만들어주기 위해서 생성  -->
+   	<!--keyPropert : insert 문에서 어디에 들어갈건지   -->
+   	<!--order : insert문 전에 실행되야 하므로 BEFORE  -->
+   		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
+   			select max(bno)+1 bno from tbl_board
+   		</selectKey>
+   	
+   		insert into tbl_board(bno,title,content,writer)
+		values(#{bno},#{title},#{content},#{writer});
    	</insert>
    	<select id="read" resultType="org.chan.domain.BoardVO">
    		select * from tbl_board where bno=#{bno};

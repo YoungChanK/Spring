@@ -9,7 +9,9 @@
       values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{bno})
    </insert>
     <delete id="delete"></delete>
-   <select id="select" resultType="org.chan.domain.BoardAttachVO"></select> 
+   <select id="select" resultType="org.chan.domain.BoardAttachVO">
+   		select*from tbl_attach where bno=#{bno}
+   </select> 
    
    
    </mapper> 

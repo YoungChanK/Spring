@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Update;
+import org.chan.domain.BoardAttachVO;
 import org.chan.domain.BoardVO;
 import org.chan.domain.Criteria;
 
@@ -25,6 +26,8 @@ public interface BoardService {
 	public List<BoardVO> listPage(Criteria cri)throws Exception;
 	
 	public int getTotalCount(Criteria cri)throws Exception;
+	
+	public List<BoardAttachVO> getAttachList(int bno) throws Exception;
 	
 //	public void  updateReplyCnt(Integer bno, int amount)throws Exception;
 }
