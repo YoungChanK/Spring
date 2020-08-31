@@ -1,5 +1,6 @@
 package org.chan.intercertor;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,24 +21,35 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		return true;
 	}
 
-	@Override
+//	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
+			ModelAndView modelAndView ) throws Exception {
 		// MemberController에 loginPost메소드에 얻은 select 결과의 model 정보를 interceptor해서 session영역에 저장
 		//Session 사용하겠다고 선언
 		HttpSession session = request.getSession();
 		// MemberController에 loginPost메소드에 얻은 select 결과의 model 정보를 가지고 와라
 		Object userVO= modelAndView.getModel().get("userVO");
-		
+		//세션유지시간
+//		session.setMaxInactiveInterval(60*30);// 세션을 30분동안 유지
+
+	
+		System.out.println("post1 handle...........");
 		//uservo에 정보가 있으면
 		if(userVO!=null) {
 			logger.info("new login success");
-			session.setAttribute("login", userVO);
+			 session.setAttribute("login", userVO);
+			
+//			if(request.getParameter("useCookie") !=null) {
+				Cookie loginCookie = new Cookie("loginCookie",session.getId()); //쿠키 생성
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(60*60*24*7); //초*분*시*일 = 7주일 동안 쿠키보관
+				response.addCookie(loginCookie);
+//			}
 			response.sendRedirect("/chan"); //메인으로 이동
 		}else {
 			
 		}
-		
+		System.out.println("post2 handle...........");
 	}
 
 }

@@ -13,7 +13,7 @@ public interface MemberMapper {
 //	public MemberVO memberRead(String userid);
 	//MemberMapperTest 35번쨰 줄처럼
 	public MemberVO memberRead(MemberVO vo);
-
+	
 	public List<MemberVO> memberList();
 	
 	public void updateMember(MemberVO vo);
@@ -22,4 +22,6 @@ public interface MemberMapper {
 //	public MemberVO readWithPW(String userid, String userpw)throws Exception;
 	
 	public MemberVO login(MemberVO member);
+	
+	public String idCheck(String userid);
 }

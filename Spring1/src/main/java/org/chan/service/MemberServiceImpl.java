@@ -16,4 +16,15 @@ public class MemberServiceImpl implements MemberService{
 		return	memapper.login(member);
 	}
 
+
+
+	public void createMember(MemberVO vo) {
+		// TODO Auto-generated method stub
+		memapper.createMember(vo);
+	}
+	@Override
+	   public String idCheck(String userId) {
+	      return memapper.idCheck(userId);
+	   }
+
 }

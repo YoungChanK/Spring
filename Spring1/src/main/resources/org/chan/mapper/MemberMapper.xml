@@ -30,6 +30,9 @@
 	<select id="login" resultType="org.chan.domain.MemberVO">
 		select userid,userpw,username from tbl_member where userid=#{userid} and userpw=#{userpw}
 	</select>
-	
+
+	<select id="idCheck" resultType="String">
+      SELECT userid FROM tbl_member WHERE userid=#{userid}
+   </select>
 	
 </mapper>
