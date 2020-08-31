@@ -40,6 +40,8 @@
    
    <beans:bean id="loginInterceptor" class ="org.chan.intercertor.LoginInterceptor"></beans:bean>
    
+   <beans:bean id="authInterceptor" class ="org.chan.intercertor.AuthInterceptor"></beans:bean>
+   
    <interceptors>
    	<interceptor>
    		<mapping path="/doA"/>
@@ -52,6 +54,13 @@
    	<interceptor>
    		<mapping path="/member/loginPost"/>
    		<beans:ref bean="loginInterceptor"/>
+   	</interceptor>
+   </interceptors>
+   
+   <interceptors>
+   	<interceptor>
+   		<mapping path="/board/register"/>
+   		<beans:ref bean="authInterceptor"/>
    	</interceptor>
    </interceptors>
 	
