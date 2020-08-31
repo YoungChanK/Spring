@@ -59,7 +59,13 @@
    
    <interceptors>
    	<interceptor>
+   		<!--글쓰기 하기전에 로그인상태를 체크한 후 권한부여  -->
    		<mapping path="/board/register"/>
+   		<!--글수정 하기전에 로그인상태를 체크한 후 권한부여  -->
+   		
+   		<!--글삭제 하기전에 로그인상태를 체크한 후 권한부여  -->
+   		
+   		
    		<beans:ref bean="authInterceptor"/>
    	</interceptor>
    </interceptors>
