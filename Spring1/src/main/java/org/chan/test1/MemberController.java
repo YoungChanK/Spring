@@ -26,11 +26,11 @@ public class MemberController {
 	//회원가입 ㅍ폼
 	@RequestMapping(value="member", method=RequestMethod.GET)
 	public void MemberGet()throws Exception{
-			
+			logger.info("회원가입 화면");
 		}
 	//회원가입 처리
 	@RequestMapping(value="member", method=RequestMethod.POST)
-	public void memberpost(MemberVO vo)throws Exception{
+	public void MemberPost(MemberVO vo)throws Exception{
 		meservice.createMember(vo);
 	}
 	//로그인화면폼
@@ -66,15 +66,17 @@ public class MemberController {
 	}
 	//아이디체크 폼
 		@ResponseBody
-	   @RequestMapping(value = "idCheck", method = RequestMethod.POST)
-	   public String idCheck(String userId) {
+	    @RequestMapping(value = "idCheck", method = RequestMethod.POST)
+	   public String idCheck(String userid) {
 	      String str = "";
-	      String idcheck = meservice.idCheck(userId);
-	      logger.info("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"+idcheck);
+	      String idcheck = meservice.idCheck(userid);
+	      logger.info("ㅡㅡㅡㅡㅡㅡㅡ"+idcheck);
 	      if(idcheck != null){ //이미 존재하는 계정
 	         str = "NO";   
+	         logger.info("NO"+str);
 	      }else{   //사용 가능한 계정
 	         str = "YES";   
+	         logger.info("YES"+str);
 	      }
 	      return str;
 

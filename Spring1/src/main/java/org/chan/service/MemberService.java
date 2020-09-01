@@ -7,6 +7,6 @@ public interface MemberService {
 	public MemberVO login(MemberVO member);
 	//회원가입 (insert)
 	public void createMember(MemberVO vo);
-	
+	//아이디 체크 
 	public String idCheck(String userid);
 }

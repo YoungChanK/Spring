@@ -9,7 +9,7 @@ public class BoardVO {
 	private String writer;
 	private String regdate;
 	private int viewcnt;
-//	private int replycnt;
+
 	
 	private List<BoardAttachVO> attachList;
 	

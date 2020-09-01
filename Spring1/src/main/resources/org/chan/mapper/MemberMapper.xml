@@ -4,10 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="org.chan.mapper.MemberMapper">
-	<insert id="createMember">
+ 	<insert id="createMember">
 	insert into tbl_member(userid,userpw,username,email) values(#{userid}, #{userpw}, #{username}, #{email})
 	
-	</insert>
+	</insert> 
 	
 	<select id="memberRead" resultType="org.chan.domain.MemberVO">
 	select * from tbl_member where userid =#{userid}
@@ -32,7 +32,7 @@
 	</select>
 
 	<select id="idCheck" resultType="String">
-      SELECT userid FROM tbl_member WHERE userid=#{userid}
+      select userid from tbl_member where userid=#{userid}
    </select>
 	
 </mapper>

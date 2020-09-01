@@ -26,5 +26,4 @@ public interface BoardMapper {
 	
 	public int getTotalCount(Criteria cri)throws Exception;
 	
-//	public void  updateReplyCnt(Integer bno, int amount)throws Exception;
 }
