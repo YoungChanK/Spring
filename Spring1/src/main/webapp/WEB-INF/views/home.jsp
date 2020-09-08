@@ -8,14 +8,17 @@
 	<title>Home</title>
 </head>
 <body>
+<%@ include file="menu.jsp" %>
 <h1>
 	Hello world!  
 	home Test
 	
 </h1>
 
-<P> ${str} </P>
+<P> ${str} 으로 이동</P>
 <P> ${login.username}님 오신걸 환영합니다  </P>
-
+<div>
+<%@ include file="uploadForm.jsp" %>
+</div>
 </body>
 </html>

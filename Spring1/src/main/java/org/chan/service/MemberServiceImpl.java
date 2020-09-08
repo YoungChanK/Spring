@@ -1,5 +1,7 @@
 package org.chan.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.chan.domain.MemberVO;
 import org.chan.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,13 @@ public class MemberServiceImpl implements MemberService {
 
 	public String idCheck(String userid) {
 		return memapper.idCheck(userid);
+	}
+
+	@Override
+	public void LoginOut(HttpSession session) {
+		// TODO Auto-generated method stub
+		session.invalidate();
+		
 	}
 
 }

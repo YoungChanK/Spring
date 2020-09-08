@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-@Component
-@Aspect
+@Component //Spring bean으로 등록
+@Aspect		//Aspect를 나타내는 클래스라는걸 명시
 public class SampleAdvice {
 	private static final Logger logger = LoggerFactory.getLogger(SampleAdvice.class);
 	//@Before  SampleService를 시작하기전에 밑에 메소드를 먼저 실행하는 어나테이션

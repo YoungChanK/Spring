@@ -7,7 +7,7 @@ public class AttachFileDTO {
 	private String uploadPath;
 	//UUID(문자열)
 	private String uuid;
-	//image여부(boolean) : ture면 이미지파일 -display , false면 이미지 아닌 ㅏ일 - download
+	//image여부(boolean) : ture면 이미지파일 -display , false면 이미지 아닌때 - download
 	private boolean image;
 	public String getFileName() {
 		return fileName;

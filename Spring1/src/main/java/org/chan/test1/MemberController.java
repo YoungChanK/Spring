@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.mysql.cj.Session;
 
@@ -32,6 +33,18 @@ public class MemberController {
 	@RequestMapping(value="member", method=RequestMethod.POST)
 	public void MemberPost(MemberVO vo)throws Exception{
 		meservice.createMember(vo);
+	}
+	//로그아웃
+	@RequestMapping(value="logout", method=RequestMethod.POST)
+	public String LogOut(HttpSession session)throws Exception{
+		meservice.LoginOut(session);
+		logger.info("세션값" + session.getId());
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/home");
+		mav.addObject("msg","logout");
+	
+		
+		return "redirect:/";
 	}
 	//로그인화면폼
 	@RequestMapping(value="login", method=RequestMethod.GET)

@@ -2,6 +2,8 @@ package org.chan.mapper;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.chan.domain.MemberVO;
 
 public interface MemberMapper {
@@ -24,4 +26,6 @@ public interface MemberMapper {
 	public MemberVO login(MemberVO member);
 	
 	public String idCheck(String userid);
+	
+	public void LoginOut(HttpSession session);
 }
