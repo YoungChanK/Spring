@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="resources/js/jquery-3.5.1.js"></script>
-<script type="text/javascript" src="resources/js/menu.js"></script>
+<script type="text/javascript" src="../resources/js/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="../resources/js/menu.js"></script>
 <meta charset="UTF-8">
 </head>
 		

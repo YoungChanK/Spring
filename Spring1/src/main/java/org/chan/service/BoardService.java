@@ -20,7 +20,7 @@ public interface BoardService {
 
 //	public void cnt(BoardVO vo)throws Exception;
 	//게시글 리스트
-	public List<BoardVO> listAll()throws Exception;
+	public List<BoardVO> listAll(BoardVO vo)throws Exception;
 	
 	//페이지 처리 한거 목록리스트 
 	public List<BoardVO> listPage(Criteria cri)throws Exception;

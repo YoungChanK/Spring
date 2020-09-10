@@ -42,7 +42,7 @@ public class UploadController {
       logger.info("파일 업로드 화면");
    }
    @RequestMapping(value = "uploadForm", method = RequestMethod.POST)
-   public void uploadForm(MultipartFile[] file)throws Exception{
+   public String uploadForm(MultipartFile[] file)throws Exception{
       for(MultipartFile miltipartFile : file) {
     	   String uploadPath="C:\\upload";
     	  
@@ -61,6 +61,8 @@ public class UploadController {
             logger.info(e.getMessage());
          }
       }
+      
+      return "redirect:/board/list";
    }
    //년/월/일 폴더 생성하는 getFolder()메소드
    //년월일 (날짜),오늘날짜를 어떻게 구할것인지 ?

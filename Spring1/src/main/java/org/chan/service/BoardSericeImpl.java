@@ -31,12 +31,13 @@ public class BoardSericeImpl implements BoardService{
 		mapper.create(vo);
 		System.out.println(vo.getBno());
 		//tbl_attach에 insert
-		vo.getAttachList().forEach(attach->{ 
-			System.out.println(attach.getBno());
-			attach.setBno(vo.getBno()); 
-			System.out.println(attach.getBno());
-		attachmapper.insert(attach);
-		});
+	//업로드용 코드
+//		vo.getAttachList().forEach(attach->{ 
+//			System.out.println(attach.getBno());
+//			attach.setBno(vo.getBno()); 
+//			System.out.println(attach.getBno());
+//		attachmapper.insert(attach);
+//		});
 	}
 	@Transactional
 	@Override
@@ -62,9 +63,9 @@ public class BoardSericeImpl implements BoardService{
 
 
 	@Override
-	public List<BoardVO> listAll() throws Exception {
+	public List<BoardVO> listAll(BoardVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return mapper.listAll();
+		return mapper.listAll(vo);
 	}
 	@Override
 	public List<BoardVO> listPage(Criteria cri) throws Exception {

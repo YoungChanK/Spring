@@ -2,9 +2,13 @@ package org.chan.test1;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.chan.domain.BoardAttachVO;
 import org.chan.domain.BoardVO;
 import org.chan.domain.Criteria;
+import org.chan.domain.MemberVO;
 import org.chan.domain.PageDTO;
 import org.chan.service.BoardService;
 import org.slf4j.Logger;
@@ -31,6 +35,8 @@ public class BoardController {
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET() throws Exception{
 		logger.info("register get.......");
+		
+	
 	}
 	//실제로 글쓰기가 이루어 지는 곳 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -38,7 +44,7 @@ public class BoardController {
 		logger.info("register POST.......");
 		logger.info("boardVO에 저장되어 있는 값 확인"+board);
 		service.create(board); //insert sql
-		
+
 		model.addAttribute("result","success");
 		return "redirect://board/list";
 		

@@ -41,7 +41,7 @@ $(document).ready(function(){
 		
 	}
 	
-	
+	//drop 상황이 아니면 정지 
 	$(".fileDrop").on("dragenter dragover",function(e){
 		e.preventDefault();
 //		alert("drag");
@@ -50,6 +50,7 @@ $(document).ready(function(){
 	$(".fileDrop").on("drop",function(e){
 		e.preventDefault();
 //		alert("drag");
+		//drop한 모든 파일들의 정보를 가진 FileList 
 		var files = e.originalEvent.dataTransfer.files;
 //		console.log(files[0].name);
 //		console.log(files[0].size);

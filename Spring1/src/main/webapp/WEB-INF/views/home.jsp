@@ -8,7 +8,7 @@
 	<title>Home</title>
 </head>
 <body>
-<%@ include file="menu.jsp" %>
+<%@ include file="member/menu.jsp" %>
 <h1>
 	Hello world!  
 	home Test
@@ -17,6 +17,7 @@
 
 <P> ${str} 으로 이동</P>
 <P> ${login.username}님 오신걸 환영합니다  </P>
+<a href="board/list">목록</a>
 <div>
 <%@ include file="uploadForm.jsp" %>
 </div>
