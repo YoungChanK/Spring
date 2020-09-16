@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="../resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../resources/js/register.js"></script>
+<!-- <script type="text/javascript" src="../resources/js/ajaxtest.js"></script> -->
 <link  rel="stylesheet" type="text/css" href="../resources/css/register.css">
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -25,7 +26,10 @@ $(document).ready(function() {
 	        focus: true, 
 	        lang : 'ko-KR'
 	  });
+	  
+	
 	});
+
 </script>
 </head>
 <body>
@@ -34,7 +38,8 @@ $(document).ready(function() {
 
 	제목 :   <input type="text" name="title">
 <!-- 	내용 :   <textarea name="content"></textarea> -->
-	작성자 : <input type="text" name="writer" value="${login.userid}" >
+	작성자 : <input type="text" name="writer" value="${login.userid}"readOnly >
+	<textarea name="fileName" id="fileName" readOnly></textarea>
 	<textarea id="summernote" name="content"></textarea>
 	<input type="submit" value="글쓰기">
    <button type="button" onclick="location.href='list'">목록</button>

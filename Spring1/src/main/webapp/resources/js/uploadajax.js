@@ -21,6 +21,7 @@ $(document).ready(function(){
 	
 	function shwoUploadFile(uploadResultArr){
 		var str = "";
+
 			//data는 배열 , for문과 같은 반복문을 이용해서 0~끝까지를 화면에 출력(each)
 			$(uploadResultArr).each(function(i,obj){
 				var fileCallPath=encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
@@ -28,7 +29,7 @@ $(document).ready(function(){
 					//이미지 파일이 아니면(image:false) - download 할수있도록..
 //					var fileCallPath=encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
 					str+="<li><a href ='/chan/download?fileName="+fileCallPath+"'><img src='resources/image/attach.jpg'>"+obj.fileName+"</a></li>";
-				    
+	
 				}else{
 					//이미지 파일이 아니면(image:ture) - display 웹에 이미지 출력..
 					var sfileCallPath=encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName); //썸네일 파일명 보내기
@@ -38,7 +39,7 @@ $(document).ready(function(){
 
 			})
 			$(".uploadResult ul").append(str);
-		
+	
 	}
 	
 	//drop 상황이 아니면 정지 
@@ -79,6 +80,12 @@ $(document).ready(function(){
 			success:function(data){
 				console.log(data);
 				shwoUploadFile(data);
+				str="";
+				  $(data).each(function(i, obj) {
+	                     str += "<li>" + data[i].fileName + "</li>";
+	                  })
+	                  $(".uploadResult ul").append(str);
+
 			}
 		})
 	

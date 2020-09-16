@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%-- <%
+	request.setCharacterEncoding("UTF-8");
+	String userid = request.getParameter("userid");
+	String userpw = request.getParameter("userpw");
+%> --%>
 </body>
 </html>

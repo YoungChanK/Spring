@@ -54,8 +54,8 @@ public class MemberController {
 	//로그인처리
 	@RequestMapping(value="loginPost", method=RequestMethod.POST)
 	public String LoginPost(MemberVO member,Model model,HttpServletRequest request)throws Exception{
-		HttpSession session = request.getSession();    //인터셉터
-
+		HttpSession session = request.getSession();    
+		meservice.login(member);
 		logger.info("로그인 처리");
 		MemberVO vo= meservice.login(member);
 		//만약에 인터셉터를 사용하지 않고 로그인처리를 하고자 할때 컨트롤러에서 아래처럼 작성
@@ -66,6 +66,7 @@ public class MemberController {
 			}
 		else { //로그인이 되어 있지않았으면 login.jsp로 이동
 			logger.info("로그인실패");
+			logger.info(vo.toString());
 			return "redirect:/member/login";
 		}
 //		logger.info("vo값은" + vo);

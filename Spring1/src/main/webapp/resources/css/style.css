@@ -39,7 +39,7 @@ main{
     width: 100%;
 }
 #mainBt1 a{
-    color: black;
+    color: white;
 }
 #mainBt2{
     user-select: none;
@@ -65,9 +65,9 @@ main{
   
 }
 #mainBt2 a{
-    color: white;
+    color: black;
 }
-#loginId{
+#userid{
     font-size: inherit;
     line-height: inherit;
     border: none;
@@ -77,7 +77,7 @@ main{
     resize: none;
     padding: 0px;
 }
-#loginPw{
+#userpw,re_userpw{
     font-size: inherit;
     line-height: inherit;
     border: none;

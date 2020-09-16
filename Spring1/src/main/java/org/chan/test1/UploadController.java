@@ -188,9 +188,16 @@ public class UploadController {
 	   logger.info("resource  : "+resource);
 	   String resourceName=resource.getFilename();
 	   HttpHeaders header = new HttpHeaders();
+	   int uuidindex = resourceName.indexOf("_");
+	   String OfileName= resourceName.substring(uuidindex+1);
+	   logger.info("인덱스 위치 :"+ uuidindex);
+	   logger.info("파일명 : "+ OfileName);
+	   
 	   
 	   try {
-		   header.add("Content-Disponsition", "attachment; filename="+new String(resourceName.getBytes("UTF-8"),"ISO-8859-1"));
+
+		   header.add("Content-Disposition", "attachment; filename=" + new String(OfileName.getBytes("UTF-8"),"ISO-8859-1"));
+		   
 	} catch (UnsupportedOperationException e) {
 		// TODO: handle exception
 		e.printStackTrace();

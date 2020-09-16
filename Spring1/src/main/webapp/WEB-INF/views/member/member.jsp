@@ -14,17 +14,18 @@
 
 </head>
 <body>
+<div id="mainDiv">
 
      <div id="login">회원가입</div>
             <button id="mainBt1"><a href="#"><i class="fab fa-google"></i>&nbsp; Google로 계속</a></button>
             <button id="mainBt2"><a href="#"><i class="fab fa-apple"></i>&nbsp; Apple로 계속</a></button>
             
 <form action ="/chan/member/member" method="post" onsubmit="return checkmem();">
-<table>
+<table style="margin:0 auto">
 	<tr>
 		<td>
-			<label>아이디</label><br>
-			<input type = "text" name="userid" id="userid">
+			
+			<input type = "text" name="userid" id="userid" placeholder="아이디">
 			<label id="idmsg"></label>
 			<input type="button" id="idcheck" value="ID중복체크"><br>
 			<label id="idcmsg" style =color:red;></label>
@@ -32,8 +33,8 @@
 	</tr>
 	<tr>
 		<td>
-			<label>비밀번호</label><br>
-			<input type = "password" name="userpw"id="userpw">
+
+			<input type = "password" name="userpw"id="userpw" placeholder="비밀번호">
 			<label id="pwmsg" style =color:lightgreen;></label>
 		</td>
 	</tr>
@@ -66,5 +67,8 @@
 
 </table>
 </form>
+ <a href="#">비밀번호 찾기</a><br>
+ <a href="#" style="color: rgba(55, 53, 47, 0.6); font-size: 14px; line-height: 1.6; margin-top: 8px; text-align: center;">SAML SSO를 사용하여 계속할 수도 있습니다.</a>
+ </div> 
 </body>
 </html>
