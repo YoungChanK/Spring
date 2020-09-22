@@ -15,6 +15,11 @@
 <div class="fileDrop">파일 업로드 Drag  Drop</div>
 
 
+<div class="uploadDiv">
+	<input type="file" name="uploadFile" multiple>
+</div>
+<button id="uploadBtn">upload</button>
+
 <!-- 파일업로드 drag&drop 결과 이미지 list -->
 <div class="uploadResult">
 <ul>

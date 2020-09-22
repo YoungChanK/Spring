@@ -49,6 +49,7 @@ $(document).ready(function(){
 	});
 	
 	$(".fileDrop").on("drop",function(e){
+//	$("#uploadBtn").on("click",function(e){
 		e.preventDefault();
 //		alert("drag");
 		//drop한 모든 파일들의 정보를 가진 FileList 
@@ -101,7 +102,7 @@ $(document).ready(function(){
 //		   alert(type);
 		   
 		      $.ajax({
-		         url : '/chan/deleteFile',
+		         url : 'deleteFile',
 		         data: {fileName:fileName,type:type}, //어떤파일 삭제해야 하는지(파일명),
 		         dataType: 'text',
 		         type: 'POST',
@@ -112,6 +113,31 @@ $(document).ready(function(){
 		      
 		   })//x에 대한 click 이벤트end
 		   
-	
+	$("#uploadBtn").on("click",function(e){
+		var formData = new FormData();
+		var inputFile = $("input[name='uploadFile']");
+		var files = inputFile[0].files;
+		console.log(files);
+		for(var i=0;i<files.length;i++){
+			formData.append("uploadFile",files[i]);
+		}
+		$.ajax({
+			//컨트롤러에 만들어줘야함
+			url:"uploadAjaxAction",
+			type:"post",
+			
+			//URL에 ? 뒤에 표시할건지
+			processData:false,
+			contentType:false, 
+			data:formData,
+			success:function(data){
+				console.log(data);
+				alert("uploaded")
+			}
+			
+		})
+		
+		
+	})
 	
 })

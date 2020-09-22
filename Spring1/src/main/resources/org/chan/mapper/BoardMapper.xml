@@ -143,11 +143,10 @@
    and rownum <= #{pageNum}*#{amount}
    ]]>
 
-
-
    	</select>
+   	
    	   <select id="getTotalCount" resultType="int">
-   select count(*) from tbl_board 
+   			select count(*) from tbl_board 
    		<include refid="search"></include>
    </select>
    	

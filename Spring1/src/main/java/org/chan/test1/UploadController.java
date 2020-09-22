@@ -22,7 +22,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -239,9 +241,69 @@ public class UploadController {
 	   return new ResponseEntity<String>("deleted"/*ajax의 success:funcion(data)에 들어가서 출력*/,HttpStatus.OK/*통신이 성공했으면*/) ;
 	   
    }
+   @RequestMapping(value = "uploadAjaxAction", method = RequestMethod.POST)
+   public void uploadAjaxPost1(MultipartFile[] file) throws Exception {
+	   logger.info("파일 업로드  ajax Post 화면");
+	   String uploadPath="C:\\upload";
+	   
+	   //AttachFileDTO 클래스에 list배열로 생성
+	   List<AttachFileDTO> list = new ArrayList<>();
+	   
+	   File uploadFolder=new File(uploadPath,getFolder());
+	   logger.info("파일업로드 폴더"+uploadFolder);
+	   //년월일 폴더 만들기
+	   //exists() 메소드를 활용하여 생성하고자 하는 폴더가 존재하지 않으면 폴더를 만들어라.
+	   if(uploadFolder.exists()==false) {
+		   uploadFolder.mkdirs(); //mkdir메소드는 폴더를 만들어 주는 메소드
+	   }	//make yyyy\\MM\\dd folder 
+	   
+	   
+	   
+	   for(MultipartFile multipartFile : file) {
+	         
+	         logger.info("파일명 : "+multipartFile.getOriginalFilename());
+	         logger.info("파일크기 : "+multipartFile.getSize());
+	         logger.info("파일종료 : "+multipartFile.getContentType());
+	         logger.info("파일 저장 위치 : "+uploadPath);
+	         
+	         AttachFileDTO attach = new AttachFileDTO();
+	    	  String fileName =multipartFile.getOriginalFilename(); //fileName
+	    	  //AttachFileDTO 클래스에 fileName 변수에 파일이름 저장
+	    	attach.setFileName(fileName);
+	         
+	         
+	         String uploadFileName=multipartFile.getOriginalFilename();
+	         UUID uuid=UUID.randomUUID();
+	         uploadFileName = uuid+"_"+uploadFileName;
+	         
+//	         File saveFile = new File(uploadPath,multipartFile.getOriginalFilename()); //파일업로드 경로
+	         
+	         try {
+	        	 File saveFile = new File(uploadFolder,uploadFileName); //파일업로드 경로
+	        	 //그냥 파일 저장
+	        	 multipartFile.transferTo(saveFile); //transferTo 폴더에 저장
+	        	//AttachFileDTO 클래스에 setUploadPath변수에 날짜랑 이름 저장
+	        	 attach.setUploadPath(getFolder());
+	        	 System.out.println("getFolder"+getFolder());
+	          	 //AttachFileDTO 클래스에 UUID변수에 저장
+	        	 attach.setUuid(uuid.toString());
+	        	 //파일 저장할때 이미지파일이면 썸내일 만들어서 저장
+	        	 if(checkImageType(saveFile)) {
+	        		 //업로드된 파일이 이미지라는 뜻
+	        		 attach.setImage(true);
+	        		 
+	        		 FileOutputStream thumbnail = new FileOutputStream(new File(uploadFolder,"s_"+uploadFileName));
+	        		 Thumbnailator.createThumbnail(multipartFile.getInputStream(),thumbnail,100, 100);
+	        		 thumbnail.close();
+
+	        	 }
+	        	 
+	        	 list.add(attach);
+	        	 logger.info("list : "+list);
+	         }catch(Exception e) {
+	            logger.info(e.getMessage());
+	         }
    
-   
-   
-   
-   
+	   }
+   }
 }
