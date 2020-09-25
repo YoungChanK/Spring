@@ -16,13 +16,13 @@ $(document).ready(function(){
 				if(!obj.image){
 					//이미지 파일이 아니면(image:false) - download 할수있도록..
 //					var fileCallPath=encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
-					str+="<li><a href ='/chan/download?fileName="+fileCallPath+"'><img src='resources/image/attach.jpg'>"+obj.fileName+"</a></li>";
+					str+="<ul><li><a href ='/chan/download?fileName="+fileCallPath+"'><img src='resources/image/attach.jpg'>"+obj.fileName+"</a></li></ul>";
 					name=obj.fileName;
 				}else{
 					//이미지 파일이 아니면(image:ture) - display 웹에 이미지 출력..
 					var sfileCallPath=encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName); //썸네일 파일명 보내기
-					str += "<li data-filename='"+obj.fileName+"' data-uuid='"+obj.uuid+"' data-uploadpath='"+obj.uploadPath+"'data-filetype='"+obj.image+"'>"+
-							"<img src='/chan/display?fileName="+fileCallPath+"'>"+"<span data-file='"+sfileCallPath+"' data-type='image'>X</span>" + "</li>";  
+					str += "<ul><li data-filename='"+obj.fileName+"' data-uuid='"+obj.uuid+"' data-uploadpath='"+obj.uploadPath+"'data-filetype='"+obj.image+"'>"+
+							"<img src='/chan/display?fileName="+fileCallPath+"'>"+"<span data-file='"+sfileCallPath+"' data-type='image'>X</span>" + "</li></ul>";  
 				}
 
 			})

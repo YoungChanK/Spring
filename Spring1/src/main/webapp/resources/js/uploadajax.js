@@ -86,6 +86,7 @@ $(document).ready(function(){
 	                     str += "<li>" + data[i].fileName + "</li>";
 	                  })
 	                  $(".uploadResult ul").append(str);
+			
 
 			}
 		})
@@ -108,6 +109,7 @@ $(document).ready(function(){
 		         type: 'POST',
 		         success: function(data){
 		            alert(data);
+		           
 		         }
 		      })
 		      

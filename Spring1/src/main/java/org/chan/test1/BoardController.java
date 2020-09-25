@@ -82,8 +82,8 @@ public class BoardController {
 		    	  
 		    	  
 		         logger.info("파일명 : "+multipartFile.getOriginalFilename());
-		         logger.info("파일명 : "+multipartFile.getSize());
-		         logger.info("파일명 : "+multipartFile.getContentType());
+		         logger.info("파일크기 : "+multipartFile.getSize());
+		         logger.info("파일타입 : "+multipartFile.getContentType());
 		         logger.info("파일 저장 위치 : "+uploadPath);
 		         
 		         String fileName =multipartFile.getOriginalFilename(); //fileName

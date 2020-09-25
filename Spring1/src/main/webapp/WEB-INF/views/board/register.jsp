@@ -62,7 +62,7 @@ $(document).ready(function() {
 	<textarea id="summernote" name="content"></textarea>
 	<table>
 		<tr class="tr1">
-			<td><input type="file" name="file" multiple></td>
+			<td><input type="file" name="file" id="upload" multiple></td>
 		</tr>
 	</table>
 	<input type="submit" value="글쓰기">

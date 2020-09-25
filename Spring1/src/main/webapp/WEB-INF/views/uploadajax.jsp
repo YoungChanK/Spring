@@ -22,7 +22,7 @@
 
 <!-- 파일업로드 drag&drop 결과 이미지 list -->
 <div class="uploadResult">
-<ul>
+<ul id="uploadul">
 
 </ul>
 
